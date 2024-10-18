@@ -24,9 +24,16 @@ body {
 a{
   color: #006b3a;
 }
+
+/*
+
+This CSS block was removed to show that the links have focus.
+
 main a{
   outline: none;
 }
+  
+*/
 h2 {
   margin-top: 0;
 }
@@ -206,7 +213,8 @@ article p {
       <nav class="menu">
         <a href="#">Home</a>
         <a href="#">Politics</a>
-        <a href="#" tabindex="-1">Business</a>
+      <!-- Business <a> element had tabIndex=-1 attribute, it is removed because it does not follow the focus order -->
+        <a href="#">Business</a>
         <a href="#">Entertainment</a>
         <a href="#">Sports</a>
         <a href="#" class="btn-search pull-right"><img src="https://raw.githubusercontent.com/udacity/ud891/2de2a0688c68809a3b453db3a24b1a59e8401459/lesson2-focus/02-dom-order/images/search.svg" alt="Search" />Search</a> 
@@ -214,13 +222,7 @@ article p {
       </nav>
     </div>
   </header>
-  <div class="newsletter">
-    <div class="container">
-      <h3>Like the Funion? Consider joining our newsletter!</h3>
-      <input type="text">
-      <button type="button" onfocus="getFocus()">Sign up</button></div>
-      
-    </div>
+
   </div>
   <main class="container">
     <h2 class="offscreen">Top story</h2>
@@ -239,11 +241,13 @@ article p {
     <div class="side-by-side">
       <div class="column">
         <div class="tier-header">
-          <h2 tabindex="0">In the news</h2>
+          <!-- h element didn't need tabIndex so it was removed-->
+          <h2>In the news</h2>
         </div>
         <article>
           <h3 class="headline">Bee wonders if maybe everyone else is a drone and he's the only one who has it "figured out."</h3>
-          <p><a href="#" tabindex="1"><b>Read More</b></a></p>
+          <!-- tabIndex was removed to follow focus order-->
+          <p><a href="#"><b>Read More</b></a></p>
           <img src="https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/02-dom-order/images/bee.jpg?raw=true" alt="A bee on top of a flower" />
         </article>
       </div>
@@ -286,13 +290,24 @@ article p {
     </div>
     
   </main>
-  <!--   stuff can be added here :)
+  
   <footer>
+    <!-- footer elements were moved here to follow HTML structure -->
+    <div class="newsletter">
+      <div class="container">
+        <h3>Like the Funion? Consider joining our newsletter!</h3>
+        <!-- Added name and placeholder attributes to make the input element understandable -->
+        <input type="text" name="email" placeholder="Enter your email">
+        <!-- The SignUp button redirects to a different page when it is focused. Instead of the Focus event, the OnClick event was used and the problem was solved. -->
+        <!-- Additionally, the function name has changed as required. -->
+        <button type="button" onclick="btnSignUpOnClick()">Sign up</button></div>
+        
+      </div>
   </footer>
-  -->
+  
   
   <script>
-    function getFocus() {
+    function btnSignUpOnClick() {
       window.open('https://aidaform.com/templates/thank-you-page-with-redirects.html','mywindow').focus()
     }
     </script>
